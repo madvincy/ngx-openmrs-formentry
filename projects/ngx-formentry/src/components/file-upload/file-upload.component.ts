@@ -36,12 +36,18 @@ export class RemoteFileUploadComponent implements OnInit, ControlValueAccessor {
     ngOnInit() {
 
     }
+    public onFileChange(fileList) {
+        console.log(fileList.length);
+          for (const file of fileList) {
+            this.upload(file);
+          }
+      }
     upload(data) {
         if (this.dataSource) {
             this.uploading = true;
             this.dataSource.fileUpload(data).subscribe((result) => {
                 // console.log('Result', result);
-                this.innerValue = result.image;
+                this.innerValue.push(result.image);
                 this.propagateChange(this.innerValue);
                 this.uploading = false;
             }, (error) => {
