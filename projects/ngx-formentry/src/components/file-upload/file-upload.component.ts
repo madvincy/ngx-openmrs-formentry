@@ -19,6 +19,7 @@ import { DataSource } from '../../form-entry/question-models/interfaces/data-sou
     ]
 })
 export class RemoteFileUploadComponent implements OnInit, ControlValueAccessor {
+    public uploads = new Array<any>();
     uploading = false;
     innerValue = null;
     private _dataSource: DataSource;
@@ -36,12 +37,20 @@ export class RemoteFileUploadComponent implements OnInit, ControlValueAccessor {
     ngOnInit() {
 
     }
+    public onFileChange(fileList) {
+        console.log(fileList.length);
+          for (const file of fileList) {
+            this.upload(file);
+          }
+      }
     upload(data) {
         if (this.dataSource) {
             this.uploading = true;
             this.dataSource.fileUpload(data).subscribe((result) => {
                 // console.log('Result', result);
                 this.innerValue = result.image;
+                console.log('Result', this.innerValue);
+                this.uploads.push(this.innerValue );
                 this.propagateChange(this.innerValue);
                 this.uploading = false;
             }, (error) => {
