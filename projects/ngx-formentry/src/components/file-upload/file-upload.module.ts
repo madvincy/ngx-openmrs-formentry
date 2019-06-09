@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
-import { NgxFileUploaderModule } from 'node_modules/ngx-file-uploader-ampath2';
+import { NgxFileUploaderModule } from 'ngx-file-uploader-ampath2';
 
 import { SharedModule } from '../../shared.module';
 // import { SelectModule } from 'ng2-select/ng2-select';
